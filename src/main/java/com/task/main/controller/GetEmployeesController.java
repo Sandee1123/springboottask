@@ -1,5 +1,7 @@
 package com.task.main.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +22,7 @@ public class GetEmployeesController {
 
 	@GetMapping("/employees/depts/{deptNo}")
 	private ResponseEntity<EmployeesResponse> getEmployyes(@PathVariable("deptNo") int deptNo) {
-		Employees emp = employeeService.getEmployeesBydeptNo(deptNo);
+		List<Employees> emp = employeeService.getEmployeesBydeptNo(deptNo);
 		if (null != emp) {
 
 			Errorcodes info = new Errorcodes();
@@ -28,6 +30,7 @@ public class GetEmployeesController {
 			info.setErrorMessage(" data available ");
 
 			EmployeesResponse data = new EmployeesResponse();
+			
 			data.setEmp(emp);
 			data.setInfo(info);
 
@@ -47,7 +50,7 @@ public class GetEmployeesController {
 
 	@GetMapping("/employees/{name}")
 	private ResponseEntity<EmployeesResponse> getByName(@PathVariable("name") String name) {
-		Employees emp = employeeService.getByName(name);
+		List<Employees> emp = employeeService.getByName(name);
 		if (null != emp) {
 
 			Errorcodes info = new Errorcodes();
@@ -55,7 +58,8 @@ public class GetEmployeesController {
 			info.setErrorMessage(" data available ");
 
 			EmployeesResponse data = new EmployeesResponse();
-			data.setEmp(emp);
+			
+				data.setEmp(emp);
 			data.setInfo(info);
 
 			return new ResponseEntity<EmployeesResponse>(data, HttpStatus.OK);
