@@ -12,7 +12,7 @@ import com.task.main.model.Employees;
 import com.task.main.service.EmployeeService;
 
 @RestController
-public class PostController {
+public class InsertController {
 	
 	@Autowired
 	private EmployeeService employeeService;
