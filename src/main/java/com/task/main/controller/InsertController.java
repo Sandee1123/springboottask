@@ -12,17 +12,24 @@ import com.task.main.model.Employees;
 import com.task.main.service.EmployeeService;
 
 @RestController
-public class InsertController {
+public class PostController {
 	
 	@Autowired
 	private EmployeeService employeeService;
 
 	@PostMapping("/employees")
-    private ResponseEntity<Employees> savePerson(@RequestBody Employees emp) {
+    private ResponseEntity<Employees> savePerson(@RequestBody Employees[] emp) {
 		
-        employeeService.save(emp);
-        return new ResponseEntity<Employees>(emp,HttpStatus.OK);
+		for(Employees employee : emp){
+			
+			employeeService.save(employee);
+			 
+			}
+		return new ResponseEntity<Employees>(HttpStatus.OK);
+        
+       
     }
+	
 	
 	
 	
